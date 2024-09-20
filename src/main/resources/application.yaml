@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+#    url: jdbc:log4jdbc:mariadb://211.172.247.78:3306/qrcode?characterEncoding=UTF-8
+    url: jdbc:log4jdbc:mariadb://211.172.247.78:3306/platformreal_dev?characterEncoding=UTF-8
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+
+server:
+  port: 8282
+
+
+# Spring Actuator
+management:
+  endpoints:
+    web:
+      base-path: /monitor
+      exposure:
+        include: health,metrics
+
+# 로깅 설정
+logging:
+  level:
+    # JDBC에 대한 로깅 레벨 설정
+    jdbc:
+      sqlonly: off
+      sqltiming: info
+      resultsettable: info
+      audit: off
+      resultset: off
+      connection: off
+      org.mybatis: debug
+
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+  config-location: classpath:/mybatis/mybatis-config.xml

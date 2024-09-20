@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.softnet.qrcode.service.qrcode.QRCodeMapper">
+<resultMap type="com.softnet.qrcode.model.qrcode.QRCodeDTO" id="QRCodeDTO">
+    <result column="memberSeqNo" property="memberSeqNo"></result>
+    <result column="member" property="member"></result>
+</resultMap>
+
+<!--    <select id="getQrCode" resultType="com.softnet.qrcode.model.qrcode.QRCodeDTO">-->
+<!--        SELECT codeId, qrCodeEncoder, member FROM tb_qrcode-->
+<!--    </select>-->
+
+<!--    <insert id="insertQRCode" parameterType="com.softnet.qrcode.model.qrcode.QRCodeDTO">-->
+<!--        INSERT INTO tb_qrcode (qrCodeEncoder, member) values(#{qrCodeEncoder}, #{member})-->
+<!--    </insert>-->
+
+    <select id="getQrCode" resultType="com.softnet.qrcode.model.qrcode.QRCodeDTO">
+        SELECT
+            q.codeSeqno,
+            q.qrCodeEncoder,
+            b.bandSeqNo,
+            b.macAddress
+        FROM
+            tb_qrcode AS q
+        JOIN
+            tb_qrcodeBand AS qb ON q.codeSeqno = qb.codeSeqno
+        JOIN
+            tb_band AS b ON qb.bandSeqNo = b.bandSeqNo;
+    </select>
+
+    <insert id="insertQRCode" parameterType="list">
+        INSERT INTO t_qrcode (qrCodeEncoder)
+        VALUES
+        <foreach collection="list" item="item"
+                 separator=",">
+            (#{item.qrCodeEncoder})
+        </foreach>
+    </insert>
+
+
+
+
+</mapper>
+
