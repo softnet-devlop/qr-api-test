@@ -4,7 +4,7 @@ public enum  ResponseCode {
 
     OK(200, "Success"), // 성공
     BAD_REQUEST(400, "Invalid request parameters supplied."), // 잘못된 파라미터
-    RESOURCE_NOT_FOUND(404, "Resource not found"),
+    RESOURCE_NOT_FOUND(404, "Resource not found"), 
     INTERNAL_SERVER(500, "Internal server error."); // 서버 내부 오류
 
     private int code;

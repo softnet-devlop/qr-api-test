@@ -53,6 +53,8 @@ public class QRCodeController {
     }
 
     @GetMapping("/get-qr")
+
+
     public ResponseEntity<List<QRCodeDTO>> getQrCode() {
         List<QRCodeDTO> qrCodeDTOList = qrCodeService.getQrCode();
         return ResponseEntity.ok(qrCodeDTOList);

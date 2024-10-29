@@ -46,7 +46,7 @@ public class QRCodeService implements QRCodeMapper {
     public List<QRCodeDTO> createQRCode(int count) throws WriterException, IOException {
         List<QRCodeDTO> qrCodeList = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < 30; i++) {
             String uniqueText = UUID.randomUUID().toString();
             QRCodeDTO qrCodeDTO = new QRCodeDTO();
 //            qrCodeDTO.setQrCodeEncoder(generateQRCodeBase64(uniqueText, 100, 100));

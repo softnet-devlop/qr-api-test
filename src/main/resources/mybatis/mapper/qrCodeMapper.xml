@@ -7,26 +7,22 @@
     <result column="member" property="member"></result>
 </resultMap>
 
-<!--    <select id="getQrCode" resultType="com.softnet.qrcode.model.qrcode.QRCodeDTO">-->
-<!--        SELECT codeId, qrCodeEncoder, member FROM tb_qrcode-->
-<!--    </select>-->
-
-<!--    <insert id="insertQRCode" parameterType="com.softnet.qrcode.model.qrcode.QRCodeDTO">-->
-<!--        INSERT INTO tb_qrcode (qrCodeEncoder, member) values(#{qrCodeEncoder}, #{member})-->
-<!--    </insert>-->
-
     <select id="getQrCode" resultType="com.softnet.qrcode.model.qrcode.QRCodeDTO">
         SELECT
             q.codeSeqno,
             q.qrCodeEncoder,
             b.bandSeqNo,
-            b.macAddress
+            b.macAddress,
+            qb.memberSeqNo,
+            m.loginId
         FROM
             tb_qrcode AS q
         JOIN
-            tb_qrcodeBand AS qb ON q.codeSeqno = qb.codeSeqno
+            tb_qrcodeInfo AS qb ON q.codeSeqno = qb.codeSeqno
         JOIN
-            tb_band AS b ON qb.bandSeqNo = b.bandSeqNo;
+            tb_band AS b ON qb.bandSeqNo = b.bandSeqNo
+        LEFT JOIN
+            tb_member AS m on qb.memberSeqNo = m.memberSeqNo;
     </select>
 
     <insert id="insertQRCode" parameterType="list">

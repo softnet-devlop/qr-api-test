@@ -2,7 +2,7 @@ spring:
   datasource:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 #    url: jdbc:log4jdbc:mariadb://211.172.247.78:3306/qrcode?characterEncoding=UTF-8
-    url: jdbc:log4jdbc:mariadb://211.172.247.78:3306/platformreal_dev?characterEncoding=UTF-8
+    url: jdbc:log4jdbc:mariadb://211.172.247.78:3306/platformreal_new?characterEncoding=UTF-8
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 
